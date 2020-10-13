@@ -166,7 +166,14 @@ class MdRespostaWS extends InfraWS {
 						$arrDocumentos[] = (object) array('IdDocumento' => (int) $objDocumentos->getDblIdDocumentoAnexo());
 					}
 				}
-				
+
+                                $myarray = array(11,15,17);
+                                $r = new ArrayObject();
+				foreach($myarray as $item) {
+				    $soapVar = new SoapVar($item,XSD_INT,NULL,NULL,'idDocumento');
+				    $r->append($soapVar);
+				}				
+
 				$Resposta[] = (object) array(
 					'IdResposta' => (int) $objMdRespostaDTO->getNumIdResposta(),
 					'IdProcedimento' => (int) $objMdRespostaDTO->getDblIdProcedimento(),
@@ -175,7 +182,7 @@ class MdRespostaWS extends InfraWS {
 					'Mensagem' => (string) $objMdRespostaDTO->getStrMensagem(),
 					'SinConclusiva' => (string) $objMdRespostaDTO->getStrSinConclusiva(),
 					'DthResposta' => (string) $objMdRespostaDTO->getDthDthResposta(),
-					'IdDocumentos' => $arrDocumentos
+					'IdDocumentos' => $r
 				);
 
 			}
